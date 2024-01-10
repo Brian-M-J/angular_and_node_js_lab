@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Send a Greeting Card</title>
+	<script>
+		function validateForm() {
+			var subject = document.getElementById('subject').value;
+			var from = document.getElementById('from').value;
+			var toList = document.getElementById('toList').value;
+			var image = document.getElementById('image').value;
+			
+			if (subject.trim() === "" || from.trim() === "" || toList.trim() === "" || image.trim() === "") {
+				alert('Subject, From, To List, and Image are required fields.');
+				return false;
+			}
+			
+			var emailList = toList.split(',');
+			if (emailList.length > 5) {
+				alert('Please

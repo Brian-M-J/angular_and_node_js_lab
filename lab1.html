@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJS First Application</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="myController">
+	<h1>Hello, {{name}}</h1>
+</div>
+
+<script>
+	angular.module('myApp', []).controller('myController', function($scope) {
+		$scope.name='Brian';
+	});
+</script>
+
+</body>
+</html>
