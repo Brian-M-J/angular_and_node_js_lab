@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Send a Greeting Card</title>
+	<script>
+		function validateForm() {
+			var subject = document.getElementById('subject').value;
+			var from = document.getElementById('from').value;
+			var toList = document.getElementById('toList').value;
+			var image = document.getElementById('image').value;
+			
+			if (subject.trim() === "" || from.trim() === "" || toList.trim() === "" || image.trim() === "") {
+				alert('Subject, From, To List, and Image are required fields.');
+				return false;
+			}
+			
+			var emailList = toList.split(',');
+			if (emailList.length > 5) {
+				alert('Please enter a maximum of 5 email addresses.');
+				return false;
+			}
+			
+			var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			for(var i = 0; i < emailList.length; ++i) {
+				if(!emailRegex.test(emailList[i].trim())) {
+					alert('Please enter alid email addresses separated by commas.');
+					return false;
+				}
+			}
+			return true;
+		}
+		
+		function previewImage() {
+			var input = document.getElementById('selectImage');
+			var file = input.files[0];
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById('imagePreview').src = e.target.result;
+			};
+			reader.readAsDataURL(file);
+		}
+	</script>
+</head>
+<body>
+	<h1>Send a Greeting Card</h1>
+	<form onsubmit="return validateForm()">
+		<label for="subject">Subject:</label>
+		<input type="text" id="subject" name="subject" required><br><br>
+		<label for="from">From (Your Name):</label>
+		<input type="text" id="from" name="from" required><br><br>
+		<label for="toList">To List (Comma-separated Email IDs, max 5):</label>
+		<input type="text" id="toList" name="toList" required><br><br>
+		<label for="selectImage">Select Image:</label>
+		<input type="file" id="selectImage" accept="image/*" onchange="previewImage()" required><br><br>
+		<img id="imagePreview" src="#" alt="Preview" style="max-width: 200px; max-height: 200px;"><br><br>
+		<input type="submit" value="Send">
+		<input type="button" value="Cancel" onclick="window.location.href='your_friend_list_page.html">
+	</form>
+</body>
+</html>
+
