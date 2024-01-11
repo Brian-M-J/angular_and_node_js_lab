@@ -1,0 +1,22 @@
+<html>
+<body>
+	<script type='text/javascript'>
+	function onlyNumberValidation() {
+		var numbers = /^[0-9]+$/;
+		if(document.getElementById('txtletter').value.match(numbers)) {
+			alert("Yes you enter numbers only.");
+			return true;
+		} else {
+			alert("Only numbers are allowed");
+			txtletter.focus();
+			return false;
+		}
+	}
+	</script>
+	<form>
+		Enter Value: <input type='text' id='txtletter'/>
+		<input type='button' onclick="onlyNumberValidation()" id="btnSubmit" value='Submit'/>
+	</form>
+</body>
+</html>
+
