@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJS Directives - Countries List</title>
+	<script src="./angular.min.js"></script>
+</head>
+<body>
+	<div ng-controller="myController">
+		<h1>Countries List with Continents</h1>
+		<country-list countries="countryData"></country-list>
+	</div>
+	<script>
+		angular.module('myApp', []).controller('myController', function($scope) {
+			$scope.countryData=[
+				{name:'USA', continent:'North America'},
+				{name:'Canada', continent:'North America'},
+				{name:'Brazil', continent:'South America'},
+				{name:'France', continent:'Europe'},
+				{name:'Germany', continent:'Europe'},
+				{name:'Australia', continent:'Oceania'},
+				{name:'China', continent:'Asia'},
+				{name:'South Africa', continent:'Africa'}
+			];
+		}).directive('countryList', function() {
+			return {
+				restrict:'E',
+				scope: {
+					countries:'='
+				},
+				template:
+				`
+				<ul>
+					<li ng-repeat="country in countries">
+						<strong>{{country.name}}</strong> - {{country.continent}}
+					</li>
+				</ul>
+				`
+			};
+		});
+	</script>
+</body>
+</html>

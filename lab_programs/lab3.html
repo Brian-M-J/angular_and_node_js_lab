@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJS Expressions - Student Information</title>
+	<script src="./angular.min.js"></script>
+</head>
+<body>
+	<div ng-controller="myController">
+		<h1>Student Information</h1>
+		<p>Name: {{student.name}}</p>
+		<p>Roll Number: {{student.rollNumber}}</p>
+		<p>Marks: {{student.marks}}</p>
+		<p>Expense on Books: {{student.expenseOnBooks | currency}}</p>
+	</div>
+	
+	<script>
+		angular.module('myApp', []).controller('myController', function($scope) {
+			$scope.student = {
+				name: 'Alice',
+				rollNumber: '2023001',
+				marks: 85,
+				expenseOnBooks: 75.50
+			};
+		});
+	</script>
+</body>
+</html>
