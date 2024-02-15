@@ -2,29 +2,28 @@
 <html lang="en" ng-app="myApp">
 <head>
 	<meta charset="UTF-8">
-	<title>AngularJS - Button Toggle and Total Display</title>
+	<title>AngularJS Button Interactions</title>
 	<script src="./angular.min.js"></script>
 </head>
 <body>
 	<div ng-controller="myController">
-		<h1>Button Toggle and Total Display</h1>
-		<button ng-click="clickMe()" ng-disaled="disableClickMe">Click Me!</button>
-		<button ng-click="showButton=true">Show Button</button>
-		<button ng-click="showButton=false">Hide Button</button>
-		<p ng-show="showTotal">Total: {{total}}</p>
+		<button ng-click="incrementCount()" ng-disaled="disabled">Click Me!</button>
+		<button ng-show="showButton" ng-click="toggleShow()">Hide Button to Click Me!</button>
+		<button ng-hide="showButton" ng-click="toggleShow()">Show Button</button>
+		<p>Total times the button is clicked: {{clickCount}}</p>
 	</div>
 	<script>
 		angular.module('myApp', []).controller('myController', function($scope) {
-			$scope.disableClickMe = false;
+			$scope.clickCount = 0;
+			$scope.disabled = false;
 			$scope.showButton = true;
-			$scope.total = 0;
-			$scope.clickMe = function() {
-				$scope.disableClickMe = true;
-				$scope.showTotal = true;
-				$scope.total = 100;
+			$scope.incrementCount = function() {
+				$scope.clickCount++;
+			};
+			$scope.toggleShow = function() {
+				$scope.showButton = !$scope.showButton;
 			};
 		});
 	</script>
 </body>
 </html>
-
