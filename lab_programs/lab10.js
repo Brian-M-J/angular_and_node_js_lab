@@ -1,22 +1,37 @@
 const fs = require('fs');
-fs.appendFile('newFile_appended.txt', 'This is the content that will be appended.', (err) => {
-	if(err) {
-		console.error(err);
+const appendData = 'This data will be appended to the file.\n';
+fs.appendFile('example.txt', appendData, (err) => {
+	if (err) {
+		console.log(err);
 		return;
 	}
-	console.log('File created (or content appended) successfully!');
+	console.log('Data appended to file!');
 });
-fs.open('newFile_open.txt', 'w', (err, file) => {
-	if(err) {
-		console.error(err);
+const content = 'This data will be written to the file.\n';
+fs.open('example2.txt', 'w', (err, fd) => {
+	if (err) {
+		console.log(err);
 		return;
 	}
-	console.log('File created successfully!');
+	fs.writeFile(fd, content, (err) => {
+		if (err) {
+			console.log(err);
+			return;
+		}
+		console.log('File written successfully!');
+		fs.close(fd, (err) => {
+			if (err) {
+				console.log(err);
+			}
+			console.log('File closed successfully!');
+		});
+	});
 });
-fs.writeFile('newFile_write.txt', 'This is the content that will be written.', (err) => {
-	if(err) {
-		console.error(err);
+const data = 'This data will overwrite the content of the file.\n';
+fs.writeFile('example3.txt', data, (err) => {
+	if (err) {
+		console.log(err);
 		return;
 	}
-	console.log('File created (or content written) successfully!');
+	console.log('File written successfully!');
 });
