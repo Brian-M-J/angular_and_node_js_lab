@@ -1,0 +1,55 @@
+<!-- Program Number : 5
+Develop AngularJS application that displays a details of students and their CGPA.
+Allow users to read the number of students and display the count.
+Note: Student details may be included in the program
+Solution:
+-->
+<!DOCTYPE html>
+<html ng-app="studentApp">
+
+<head>
+    <title>Student Details</title>
+
+    <script src="angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-controller="StudentController">
+        <h2>Student Details</h2>
+        <label>Enter the number of students:</label>
+
+        <input type="number" ng-model="numStudents" ng-change="generateStudents()"><br>
+
+        <div ng-repeat="student in students">
+            <h3>Student {{$index + 1}}</h3>
+            <p>Name: {{student.name}}</p>
+            <p>CGPA: {{student.cgpa}}</p>
+        </div>
+
+        <p>Total Students: {{numStudents}}</p>
+    </div>
+
+    <script>
+
+        var app = angular.module('studentApp', []); app.controller('StudentController', function ($scope) {
+
+            $scope.numStudents = 0;
+            $scope.students = [];
+
+            $scope.generateStudents = function () {
+                $scope.students = [];
+                for (var i = 0; i < $scope.numStudents; i++) {
+
+                    $scope.students.push({
+                        name: "Student " + (i + 1),
+                        cgpa: Math.floor(Math.random() * 4) + 1 // Random CGPA between 1 and 4
+                    });
+                }
+            };
+
+        });
+    </script>
+
+</body>
+
+</html>

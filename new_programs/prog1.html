@@ -1,0 +1,33 @@
+<!-- Program Number: 1
+Develop Angular JS program that allows user to input their first name and last name and display their full name.
+Note: The default values for first name and last name may be included in the program.
+-->
+<!DOCTYPE html>
+<html ng-app="fullNameApp">
+
+<head>
+    <title>Full Name Display</title>
+    <script src="angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-controller="FullNameController">
+        <label>First Name:</label>
+        <input type="text" ng-model="firstName"><br>
+        <label>Last Name:</label>
+        <input type="text" ng-model="lastName"><br>
+        <p>Full Name: {{fullName()}}</p>
+    </div>
+    <script>
+        var app = angular.module('fullNameApp', []); app.controller('FullNameController', function ($scope) {
+            //	Default values for first name and last name
+            $scope.firstName = "John"; $scope.lastName = "Doe";
+            //	Function to concatenate first name and last name
+            $scope.fullName = function () {
+                return $scope.firstName + " " + $scope.lastName;
+            };
+        });
+    </script>
+</body>
+
+</html>
