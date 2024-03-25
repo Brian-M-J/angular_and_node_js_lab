@@ -36,21 +36,11 @@ and delete tasks. Note: The default values for tasks may be included in the prog
             </tr>
         </tbody>
     </table>
-    <!-- Edit Task Modal -->
-    <div ng-if="editingTaskIndex !== null">
-        <h2>Edit Task</h2>
-        Task:
-        <input type="text" ng-model="tasks[editingTaskIndex]" required>
-        <br>
-        <button ng-click="saveEdit()">Save</button>
-        <button ng-click="cancelEdit()">Cancel</button>
-    </div>
     <script>
         var app = angular.module('todoApp', []);
         app.controller('todoController', function ($scope) {
             $scope.tasks = ['Task 1', 'Task 2', 'Task 3'];
             $scope.newTask = '';
-            $scope.editingTaskIndex = null;
             $scope.addTask = function () {
                 $scope.tasks.push($scope.newTask);
                 $scope.newTask = '';
